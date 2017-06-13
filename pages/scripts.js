@@ -57,9 +57,9 @@ function guardarModalidad(){
   });
 }
 
-function eliminarModalidad(){
+function eliminarModalidad($codModalidadEliminar){
   
-  var codModSol = $('#codModalidadEliminar').val(); 
+  var codModSol = $codModalidadEliminar; 
 
   $.ajax({
     type:'POST',
@@ -68,13 +68,34 @@ function eliminarModalidad(){
     timeout:'5000',
 
     success: function(data){
-      alert("Modalidad Eliminada");
+      
       
       //$('#codModalidadSolicitada').val('');
-      //document.location.href='gestionModalidad.php';
+      document.location.href='gestionModalidad.php';
       
     }
   });
+  alert("Modalidad "+codModSol+" eliminada con éxito.");
 }
 
+function cambiarEstadoModalidad($codModalidadModificar){
+  
+  var codEstMod = $codModalidadModificar; 
+  
+  $.ajax({
+    type:'POST',
+    url:'modificaEstadoModalidad.php',
+    data:{"codEstMod":codEstMod},
+    timeout:'5000',
+
+    success: function(data){
+      
+      
+      //$('#codModalidadSolicitada').val('');
+      document.location.href='gestionModalidad.php';
+      
+    }
+  });
+  alert("El Estado de la Modalidad "+codEstMod+" fue modificado con éxito.");
+}
 
